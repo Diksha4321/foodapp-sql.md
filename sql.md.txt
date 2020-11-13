@@ -1,0 +1,61 @@
+Task : Create Database
+create database diksha_db;
+use database_db;
+
+Task 1: Register Table
+create table register (
+id int primary key auto_increment,
+name varchar(40) NOT NULL,
+email varchar(50) NOT NULL,
+password varchar(30) NOT NULL,
+role varchar(10) NOT NULL default 'USER',
+active boolean NOT NULL default 1,
+unique(email),
+check (role in ('USER','ADMIN'))
+);
+
+Task 1.1: Insert values into Register table
+insert into register (name,email,password,role) values ( 'Ravi','Ravi@gmail.com', '123', 'ADMIN');
+insert into register (name,email,password,role) values ( 'sam','sam@gmail.com', '456', 'USER');
+insert into register (name,email,password,role) values ( 'sita','sita@gmail.com', '789', 'USER');
+
+Task 1.2: Getting values into Register table
+selelct * from Register where role='ADMIN';
+selelct * from  Register where role='USER';
+
+Task 2 Creating products table create table products
+create table items(
+product_id integer primary key auto_increment
+product_name varchar(50) not null
+product_price integer(10) not null
+product_description text(500)
+product_count integer(5)
+);
+
+Task2.1
+Inserting values into products table insert into items
+insert into items(product_id,product_name,product_price,product_description,product_count) values(1,"Fried rice", 130, "Auhentic taste",4); 
+insert into items(product_id,product_name,product_pricw,product_description,product_count) values(3,"Noodles", 150, "Auhentic taste",3);
+insert into items(product_id,product_name,product_price,product_description,product_count) values(1,"Pizza", 130, "Auhentic taste",4); 
+insert into items(product_id,product_name,product_price,product_description,product_count) values(1,"Momos", 130, "Auhentic taste",4); 
+insert into items(product_id,product_name,product_price,product_description,product_count) values(1,"Dosa", 130, "Auhentic taste",4); 
+
+Task 3
+Creating orders table with foreign key referencing from item table 
+create table orders( 
+id bigint primary key auto_increment, 
+user_id bigint not null, 
+total_amount int not null, 
+order_date timestamp not null 
+default current_timestamp, 
+status varchar(100) not null, 
+foreign key (user_id) 
+references users(id)
+);
+
+Task 3.1
+Inserting values into orders table
+ insert into orders(user_id,total_amount,status) values (1,450,"success");
+
+
+
